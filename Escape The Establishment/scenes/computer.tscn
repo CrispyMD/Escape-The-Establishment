@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=6 format=3 uid="uid://bro1jq2gxhirb"]
 
 [ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
 
@@ -7,6 +7,12 @@ size = Vector3(0.384338, 1.36488, 2.55933)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pjljr"]
 size = Vector3(2.67419, 1.37085, 4.06104)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwtf7"]
+size = Vector3(2.39954, 2.59192, 1.33911)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yoowl"]
+size = Vector3(1.43347, 2.55609, 2.04797)
 
 [node name="Computer" type="StaticBody3D"]
 
@@ -20,3 +26,17 @@ shape = SubResource("BoxShape3D_718ga")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.217468, 0.653829, 0.0803864)
 shape = SubResource("BoxShape3D_pjljr")
+
+[node name="HackAreas" type="Area3D" parent="."]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="HackAreas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259433, 0.750589, 1.75062)
+shape = SubResource("BoxShape3D_qwtf7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HackAreas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.294861, 0.795959, -1.96079)
+shape = SubResource("BoxShape3D_qwtf7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HackAreas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.932312, 0.778046, 0.0415649)
+shape = SubResource("BoxShape3D_yoowl")
