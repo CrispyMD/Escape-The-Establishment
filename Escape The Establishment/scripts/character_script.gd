@@ -21,7 +21,7 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-	elif event is InputEventMouseMotion:
+	if event is InputEventMouseMotion:
 		self.rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
 		spring.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
 		spring.rotation.x = clamp(spring.rotation.x, deg_to_rad(-90), deg_to_rad(30))
@@ -30,6 +30,8 @@ func _unhandled_input(event):
 		#head.rotate_y(-event.relative.x * SENSITIVITY)
 		#camera.rotate_x(-event.relative.y * SENSITIVITY)
 		#camera.rotation.x = clamp(camera.rotation.x, -PI / 2, PI / 2)
+	if Input.is_action_just_pressed("ability"):
+		pass
 
 
 
@@ -49,6 +51,4 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	if Input.is_action_just_pressed("ability"):
-		pass
 	move_and_slide()
