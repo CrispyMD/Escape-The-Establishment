@@ -3,7 +3,26 @@ extends CharacterBody3D
 const gravity = 9.8
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const SENSITIVITY = 0.003
 @onready var head = $Head
+@onready var camera = $Head/Camera3D
+
+
+func _ready():
+	self.rotation = Vector3.ZERO
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	elif event is InputEventMouseMotion:
+		head.rotate_y(-event.relative.x * SENSITIVITY)
+		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		camera.rotation.x = clamp(camera.rotation.x, -PI / 2, PI / 2)
+
+
 
 func _physics_process(delta):
 	if not is_on_floor():
