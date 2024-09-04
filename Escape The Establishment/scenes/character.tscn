@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bte1j3ynvf0re"]
+[gd_scene load_steps=12 format=3 uid="uid://bte1j3ynvf0re"]
 
 [ext_resource type="Script" path="res://scripts/character_script.gd" id="1_vew7i"]
 [ext_resource type="FontFile" uid="uid://bued63pcmgjnq" path="res://assets/Poppins-SemiBold.ttf" id="2_mr3gc"]
+[ext_resource type="Script" path="res://scripts/ability_ui.gd" id="2_njcvc"]
 [ext_resource type="FontFile" uid="uid://b1fkbwbmmjphq" path="res://assets/Poppins-Light.ttf" id="3_ypbdt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_35hl4"]
@@ -32,12 +33,14 @@ font_size = 32
 font_color = Color(0.0431373, 0, 0.129412, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qaaxn"]
+line_spacing = 0.1
 font = ExtResource("3_ypbdt")
 font_size = 28
 font_color = Color(0.921569, 0.905882, 1, 1)
 outline_color = Color(0.921569, 0.905882, 1, 1)
 
 [node name="Character" type="CharacterBody3D"]
+collision_layer = 3
 script = ExtResource("1_vew7i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -63,6 +66,7 @@ current = true
 [node name="AbilityTimer" type="Timer" parent="."]
 
 [node name="AbilityUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,6 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+script = ExtResource("2_njcvc")
 
 [node name="BackgroundPanel" type="Panel" parent="AbilityUI"]
 layout_mode = 1
@@ -122,6 +127,30 @@ label_settings = SubResource("LabelSettings_2ab3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="AbilityUI/BackgroundPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StupidFUckingRichLabelOrSOmeSHit" type="RichTextLabel" parent="AbilityUI/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.921569, 0.905882, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_ypbdt")
+theme_override_font_sizes/normal_font_size = 28
+text = "Ability ewe"
+fit_content = true
+scroll_active = false
+
 [node name="AbilityText" type="Label" parent="AbilityUI/BackgroundPanel"]
 layout_mode = 1
 anchors_preset = 6
@@ -137,3 +166,4 @@ grow_vertical = 2
 text = "Ability"
 label_settings = SubResource("LabelSettings_qaaxn")
 vertical_alignment = 1
+autowrap_mode = 1
