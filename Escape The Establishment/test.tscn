@@ -8,3 +8,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
