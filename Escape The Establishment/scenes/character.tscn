@@ -20,6 +20,8 @@ shape = SubResource("ConvexPolygonShape3D_8q6nx")
 
 [node name="Head" type="Node3D" parent="."]
 
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 shape = SubResource("SeparationRayShape3D_bjyfv")
 spring_length = 3.0
