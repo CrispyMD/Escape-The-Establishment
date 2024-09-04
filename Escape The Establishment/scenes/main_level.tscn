@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cat1tfhnntnv8"]
+[gd_scene load_steps=8 format=3 uid="uid://cat1tfhnntnv8"]
 
 [ext_resource type="PackedScene" uid="uid://bte1j3ynvf0re" path="res://scenes/character.tscn" id="1_tjt32"]
+[ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6cubu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -49,3 +50,6 @@ mesh = SubResource("BoxMesh_t0s5s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_s1t4v")
+
+[node name="Computer" parent="." instance=ExtResource("2_5x8c8")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.75627, 0.0933901, 6.9935)
