@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-const gravity = 9.8
+const gravity = 14
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 5.5
 const SENSITIVITY = 0.1
 @onready var head = $Head
 #FIRST PERSON
