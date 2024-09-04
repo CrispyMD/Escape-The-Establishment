@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=4 format=3 uid="uid://bro1jq2gxhirb"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_kw35x"]
+[ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_718ga"]
+size = Vector3(0.384338, 1.36488, 2.55933)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjljr"]
+size = Vector3(2.67419, 1.37085, 4.06104)
 
 [node name="Computer" type="StaticBody3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.668, 0, 0, 0, 0.25, 0, 0, 0, 0.668, 0, 0.125, 0)
-mesh = SubResource("BoxMesh_kw35x")
+[node name="computer" parent="." instance=ExtResource("1_gxfcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221, 1.12624, 0.075)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36615, 1.91436, 0.0651276)
+shape = SubResource("BoxShape3D_718ga")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.217468, 0.653829, 0.0803864)
+shape = SubResource("BoxShape3D_pjljr")

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Escape The Establishment"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 left={
