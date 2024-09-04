@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bro1jq2gxhirb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kw35x"]
+
+[node name="Computer" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.668, 0, 0, 0, 0.25, 0, 0, 0, 0.668, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_kw35x")
