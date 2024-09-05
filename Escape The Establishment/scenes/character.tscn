@@ -198,7 +198,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ims4y")
 
-[node name="Control" type="Control" parent="CharacterUI/ProgressBar"]
+[node name="Border" type="Control" parent="CharacterUI/ProgressBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -206,223 +206,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 59.0
-offset_bottom = 7.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect2" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 4.0
-offset_top = 11.0
-offset_right = 48.0
-offset_bottom = 14.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect3" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 66.0
-offset_top = 4.0
-offset_right = 141.0
-offset_bottom = 7.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect4" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 148.0
-offset_top = 4.0
-offset_right = 179.0
-offset_bottom = 7.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect5" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 56.0
-offset_top = 11.0
-offset_right = 76.0
-offset_bottom = 14.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect6" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 186.0
-offset_top = 4.0
-offset_right = 255.0
-offset_bottom = 7.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect7" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 83.0
-offset_top = 11.0
-offset_right = 120.0
-offset_bottom = 14.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect8" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 262.0
-offset_top = 4.0
-offset_right = 290.0
-offset_bottom = 7.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect9" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 127.0
-offset_top = 11.0
-offset_right = 176.0
-offset_bottom = 14.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect10" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 183.0
-offset_top = 11.0
-offset_right = 216.0
-offset_bottom = 14.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect11" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 223.0
-offset_top = 11.0
-offset_right = 290.0
-offset_bottom = 14.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect12" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 4.0
-offset_top = 18.0
-offset_right = 24.0
-offset_bottom = 21.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect13" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 31.0
-offset_top = 18.0
-offset_right = 86.0
-offset_bottom = 21.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect14" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 93.0
-offset_top = 18.0
-offset_right = 126.0
-offset_bottom = 21.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect15" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 133.0
-offset_top = 18.0
-offset_right = 208.0
-offset_bottom = 21.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect16" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 215.0
-offset_top = 18.0
-offset_right = 243.0
-offset_bottom = 21.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect17" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 250.0
-offset_top = 18.0
-offset_right = 290.0
-offset_bottom = 21.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect18" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 42.0
-offset_top = 25.0
-offset_right = 97.0
-offset_bottom = 28.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect19" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 104.0
-offset_top = 25.0
-offset_right = 179.0
-offset_bottom = 28.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect20" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 4.0
-offset_top = 25.0
-offset_right = 35.0
-offset_bottom = 28.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect21" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 186.0
-offset_top = 25.0
-offset_right = 223.0
-offset_bottom = 28.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect22" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 230.0
-offset_top = 25.0
-offset_right = 290.0
-offset_bottom = 28.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect23" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 4.0
-offset_top = 32.0
-offset_right = 79.0
-offset_bottom = 35.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect24" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 86.0
-offset_top = 32.0
-offset_right = 114.0
-offset_bottom = 35.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect25" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 121.0
-offset_top = 32.0
-offset_right = 161.0
-offset_bottom = 35.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect26" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 168.0
-offset_top = 32.0
-offset_right = 188.0
-offset_bottom = 35.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect27" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 195.0
-offset_top = 32.0
-offset_right = 270.0
-offset_bottom = 35.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect28" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 277.0
-offset_top = 32.0
-offset_right = 290.0
-offset_bottom = 35.0
-color = Color(0.0431373, 0, 0.129412, 0.509804)
-
-[node name="ColorRect29" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_right = 2.0
+[node name="ColorRect29" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+offset_right = 4.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
-[node name="ColorRect30" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 292.0
+[node name="ColorRect30" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+offset_left = 290.0
 offset_right = 294.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
-[node name="ColorRect31" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 2.0
-offset_right = 292.0
-offset_bottom = 2.0
+[node name="ColorRect31" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+offset_left = 4.0
+offset_right = 290.0
+offset_bottom = 4.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
-[node name="ColorRect32" type="ColorRect" parent="CharacterUI/ProgressBar/Control"]
-offset_left = 2.0
-offset_top = 37.0
-offset_right = 292.0
+[node name="ColorRect32" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+offset_left = 4.0
+offset_top = 35.0
+offset_right = 290.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
