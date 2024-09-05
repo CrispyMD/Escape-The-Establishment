@@ -10,6 +10,7 @@ const SENSITIVITY = 0.1
 @onready var spring = $SpringArm3D
 
 var camera_mode_is_fps = false
+@export var is_beast = false
 
 func _ready():
 	self.rotation = Vector3.ZERO
