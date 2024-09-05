@@ -6,7 +6,8 @@ var basefontsize = 28
 
 ## IMPORTANT!!!! percent is between 0-1 (0 is nothing, 1 is full)
 func set_progress_percent(percent: float):
-	$ProgressBar/Panel.size.x = $ProgressBar/Panel.size.x * percent
+	print($ProgressBar/Panel.size.x)
+	$ProgressBar/Panel.size.x = $ProgressBar.size.x * percent
 
 func undisplay_all():
 	$AbilityPanel.visible = false

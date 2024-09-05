@@ -21,13 +21,15 @@ func hack_computer():
 	hacking_timer.start()
 
 func _process(delta):
+	#print(hacking_timer.time_left)
 	if hacking_timer.time_left == 0 or computer_is_hacked:
 		return
 	for node in nodes_in_hack_area:
 		if not node is player: return
 		var progress_bar = node.get_node("CharacterUI/ProgressBar")
 		var progress_panel = progress_bar.get_node("Panel")
-		progress_panel.size.x -= delta * progress_bar.size.x / hacking_timer.wait_time
+		node.get_node("CharacterUI").set_progress_percent(1 - hacking_timer.time_left / hacking_timer.wait_time)
+		#progress_panel.size.x -= delta * progress_bar.size.x / hacking_timer.wait_time
 
 
 func _on_hacking_timer_timeout():
