@@ -1,3 +1,4 @@
+class_name player
 extends CharacterBody3D
 
 const gravity = 14
