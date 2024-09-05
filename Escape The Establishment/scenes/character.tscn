@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bte1j3ynvf0re"]
+[gd_scene load_steps=14 format=3 uid="uid://bte1j3ynvf0re"]
 
 [ext_resource type="Script" path="res://scripts/character_script.gd" id="1_vew7i"]
 [ext_resource type="FontFile" uid="uid://bued63pcmgjnq" path="res://assets/Poppins-SemiBold.ttf" id="2_mr3gc"]
@@ -39,6 +39,20 @@ font_size = 28
 font_color = Color(0.921569, 0.905882, 1, 1)
 outline_color = Color(0.921569, 0.905882, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5xld"]
+bg_color = Color(0.0431373, 0, 0.129412, 0.509804)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ims4y"]
+bg_color = Color(0.921569, 0.905882, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_vew7i")
@@ -66,8 +80,7 @@ current = true
 
 [node name="AbilityTimer" type="Timer" parent="."]
 
-[node name="AbilityUI" type="Control" parent="."]
-visible = false
+[node name="CharacterUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +91,7 @@ mouse_filter = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
-[node name="BackgroundPanel" type="Panel" parent="AbilityUI"]
+[node name="BackgroundPanel" type="Panel" parent="CharacterUI"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -94,13 +107,13 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pce3x")
 
-[node name="GodotIsStupidIHateIt" type="Control" parent="AbilityUI/BackgroundPanel"]
+[node name="GodotIsStupidIHateIt" type="Control" parent="CharacterUI/BackgroundPanel"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="LetterBackgroundPanel" type="Panel" parent="AbilityUI/BackgroundPanel/GodotIsStupidIHateIt"]
+[node name="LetterBackgroundPanel" type="Panel" parent="CharacterUI/BackgroundPanel/GodotIsStupidIHateIt"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -116,7 +129,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uvqix")
 
-[node name="AbilityLetter" type="Label" parent="AbilityUI/BackgroundPanel/GodotIsStupidIHateIt/LetterBackgroundPanel"]
+[node name="AbilityLetter" type="Label" parent="CharacterUI/BackgroundPanel/GodotIsStupidIHateIt/LetterBackgroundPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +141,7 @@ label_settings = SubResource("LabelSettings_2ab3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AbilityUI/BackgroundPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterUI/BackgroundPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -142,7 +155,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="StupidFUckingRichLabelOrSOmeSHit" type="RichTextLabel" parent="AbilityUI/BackgroundPanel/VBoxContainer"]
+[node name="StupidFUckingRichLabelOrSOmeSHit" type="RichTextLabel" parent="CharacterUI/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.921569, 0.905882, 1, 1)
@@ -152,7 +165,7 @@ text = "Ability ewe"
 fit_content = true
 scroll_active = false
 
-[node name="AbilityText" type="Label" parent="AbilityUI/BackgroundPanel"]
+[node name="AbilityText" type="Label" parent="CharacterUI/BackgroundPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -168,3 +181,27 @@ text = "Ability"
 label_settings = SubResource("LabelSettings_qaaxn")
 vertical_alignment = 1
 autowrap_mode = 1
+
+[node name="ProgressBar" type="Panel" parent="CharacterUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.875
+anchor_right = 0.5
+anchor_bottom = 0.875
+offset_left = -147.0
+offset_top = -40.0
+offset_right = 147.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n5xld")
+
+[node name="Panel" type="Panel" parent="CharacterUI/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ims4y")
