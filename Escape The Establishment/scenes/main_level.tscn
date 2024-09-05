@@ -30,6 +30,11 @@ environment = SubResource("Environment_x7p88")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
+[node name="Computers" type="Node3D" parent="."]
+
+[node name="Computer" parent="Computers" instance=ExtResource("2_5x8c8")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.75627, 0.0933901, 6.9935)
+
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(25.2525, 0, 0, 0, 0.186781, 0, 0, 0, 28.9311, 0, 0, 0)
 mesh = SubResource("BoxMesh_t0s5s")
@@ -50,6 +55,3 @@ mesh = SubResource("BoxMesh_t0s5s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_s1t4v")
-
-[node name="Computer" parent="." instance=ExtResource("2_5x8c8")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.75627, 0.0933901, 6.9935)

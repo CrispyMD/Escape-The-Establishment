@@ -12,6 +12,8 @@ const SENSITIVITY = 0.1
 
 var camera_mode_is_fps = false
 @export var is_beast = false
+const Computer = preload("res://scripts/computer.gd")
+signal interact_pressed
 
 func _ready():
 	self.rotation = Vector3.ZERO
@@ -36,6 +38,8 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("ability"):
 		pass
 	if Input.is_action_just_pressed("interact"):
+		interact_pressed.emit()
+	if Input.is_action_just_pressed("switch_pov"):
 		switch_pov()
 
 func switch_pov():
