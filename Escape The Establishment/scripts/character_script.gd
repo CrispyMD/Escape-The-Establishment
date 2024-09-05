@@ -35,7 +35,7 @@ func _unhandled_input(event):
 		handle_camera_movement(event)
 	if Input.is_action_just_pressed("ability"):
 		pass
-	if Input.is_action_just_pressed("switch_pov"):
+	if Input.is_action_just_pressed("interact"):
 		switch_pov()
 
 func switch_pov():
