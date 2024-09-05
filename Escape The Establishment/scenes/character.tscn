@@ -80,7 +80,6 @@ current = true
 [node name="AbilityTimer" type="Timer" parent="."]
 
 [node name="CharacterUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +90,8 @@ mouse_filter = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
-[node name="BackgroundPanel" type="Panel" parent="CharacterUI"]
+[node name="AbilityPanel" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -107,13 +107,13 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pce3x")
 
-[node name="GodotIsStupidIHateIt" type="Control" parent="CharacterUI/BackgroundPanel"]
+[node name="GodotIsStupidIHateIt" type="Control" parent="CharacterUI/AbilityPanel"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="LetterBackgroundPanel" type="Panel" parent="CharacterUI/BackgroundPanel/GodotIsStupidIHateIt"]
+[node name="LetterBackgroundPanel" type="Panel" parent="CharacterUI/AbilityPanel/GodotIsStupidIHateIt"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,7 +129,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uvqix")
 
-[node name="AbilityLetter" type="Label" parent="CharacterUI/BackgroundPanel/GodotIsStupidIHateIt/LetterBackgroundPanel"]
+[node name="AbilityLetter" type="Label" parent="CharacterUI/AbilityPanel/GodotIsStupidIHateIt/LetterBackgroundPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,7 +141,7 @@ label_settings = SubResource("LabelSettings_2ab3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterUI/BackgroundPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterUI/AbilityPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -155,7 +155,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="StupidFUckingRichLabelOrSOmeSHit" type="RichTextLabel" parent="CharacterUI/BackgroundPanel/VBoxContainer"]
+[node name="StupidFUckingRichLabelOrSOmeSHit" type="RichTextLabel" parent="CharacterUI/AbilityPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.921569, 0.905882, 1, 1)
@@ -165,7 +165,7 @@ text = "Ability ewe"
 fit_content = true
 scroll_active = false
 
-[node name="AbilityText" type="Label" parent="CharacterUI/BackgroundPanel"]
+[node name="AbilityText" type="Label" parent="CharacterUI/AbilityPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -183,6 +183,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
