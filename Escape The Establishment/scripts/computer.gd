@@ -2,6 +2,7 @@ extends StaticBody3D
 
 var nodes_in_hack_area = []
 @onready var hack_handler = $hack_handler
+var how_done := 0.0
 
 func _on_hack_areas_body_entered(body):
 	nodes_in_hack_area.push_front(body)
