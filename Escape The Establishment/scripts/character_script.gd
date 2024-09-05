@@ -15,6 +15,7 @@ var camera_mode_is_fps = false
 func _ready():
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if is_beast == camera_mode_is_fps: switch_pov()
 
 func handle_camera_movement(event):
 	if camera_mode_is_fps:
@@ -35,7 +36,6 @@ func _unhandled_input(event):
 		pass
 	if Input.is_action_just_pressed("switch_pov"):
 		switch_pov()
-			
 
 func switch_pov():
 	if camera_mode_is_fps:
@@ -55,8 +55,6 @@ func switch_cameras(to_camera, from_camera):
 	from_camera.current = false
 	to_camera.current = true
 	camera_mode_is_fps = not camera_mode_is_fps
-
-
 
 func _physics_process(delta):
 	if not is_on_floor():
