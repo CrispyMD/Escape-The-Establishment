@@ -18,7 +18,7 @@ signal interact_pressed
 func _ready():
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if is_beast == camera_mode_is_fps: switch_pov()
+	if is_beast != camera_mode_is_fps: switch_pov()
 
 func handle_camera_movement(event):
 	if camera_mode_is_fps:
