@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=10 format=3 uid="uid://bro1jq2gxhirb"]
 
 [ext_resource type="Script" path="res://scripts/computer.gd" id="1_8ojk8"]
 [ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
@@ -17,6 +17,15 @@ size = Vector3(1.43347, 1.79625, 2.04797)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ro3oh"]
 size = Vector3(2.03461, 1.86412, 1.30396)
+
+[sub_resource type="Animation" id="Animation_w6cjo"]
+resource_name = "hack_computer"
+length = 5.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldk8t"]
+_data = {
+"hack_computer": SubResource("Animation_w6cjo")
+}
 
 [node name="Computer" type="StaticBody3D"]
 script = ExtResource("1_8ojk8")
@@ -46,6 +55,11 @@ shape = SubResource("BoxShape3D_yoowl")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="HackAreas"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226482, 1.21969, 1.79544)
 shape = SubResource("BoxShape3D_ro3oh")
+
+[node name="hack_handler" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ldk8t")
+}
 
 [connection signal="body_entered" from="HackAreas" to="." method="_on_hack_areas_body_entered"]
 [connection signal="body_exited" from="HackAreas" to="." method="_on_hack_areas_body_exited"]
