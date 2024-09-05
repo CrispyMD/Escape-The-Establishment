@@ -56,7 +56,6 @@ corner_radius_bottom_left = 12
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_vew7i")
-is_beast = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_35hl4")
@@ -81,6 +80,7 @@ current = true
 [node name="AbilityTimer" type="Timer" parent="."]
 
 [node name="CharacterUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
