@@ -14,6 +14,7 @@ var camera_mode_is_fps = false
 @export var is_beast = false
 const Computer = preload("res://scripts/computer.gd")
 signal interact_pressed
+@onready var progress_bar = $CharacterUI/ProgressBar
 
 func _ready():
 	self.rotation = Vector3.ZERO
@@ -39,6 +40,7 @@ func _unhandled_input(event):
 		pass
 	if Input.is_action_just_pressed("interact"):
 		interact_pressed.emit()
+		progress_bar.show()
 	if Input.is_action_just_pressed("switch_pov"):
 		switch_pov()
 

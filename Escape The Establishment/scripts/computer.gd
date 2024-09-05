@@ -1,8 +1,8 @@
 extends StaticBody3D
 
 var nodes_in_hack_area = []
-@onready var hack_handler = $hack_handler
-var how_done := 0.0
+@onready var hacking_timer = $HackingTimer
+var computer_is_hacked = false
 
 func _on_hack_areas_body_entered(body):
 	nodes_in_hack_area.push_front(body)
@@ -10,8 +10,6 @@ func _on_hack_areas_body_entered(body):
 	body.interact_pressed.connect(hack_computer)
 	
 	body.get_node("CharacterUI").display_hack()
-	#body.get_node("AbilityUI").display_ability("s")
-
 
 func _on_hack_areas_body_exited(body):
 	nodes_in_hack_area.erase(body)
@@ -20,5 +18,17 @@ func _on_hack_areas_body_exited(body):
 	body.get_node("CharacterUI").undisplay_all()
 
 func hack_computer():
-	print("ein li moah")
-	
+	hacking_timer.start()
+
+func _process(delta):
+	if hacking_timer.time_left == 0 or computer_is_hacked:
+		return
+	for node in nodes_in_hack_area:
+		if not node is player: return
+		var progress_bar = node.get_node("CharacterUI/ProgressBar")
+		var progress_panel = progress_bar.get_node("Panel")
+		progress_panel.size.x -= delta * progress_bar.size.x / hacking_timer.wait_time
+
+
+func _on_hacking_timer_timeout():
+	print("yay")

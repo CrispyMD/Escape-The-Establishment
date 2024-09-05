@@ -175,6 +175,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -207,23 +208,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect29" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+layout_mode = 0
 offset_right = 4.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="ColorRect30" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+layout_mode = 0
 offset_left = 290.0
 offset_right = 294.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="ColorRect31" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+layout_mode = 0
 offset_left = 4.0
 offset_right = 290.0
 offset_bottom = 4.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="ColorRect32" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 35.0
 offset_right = 290.0
