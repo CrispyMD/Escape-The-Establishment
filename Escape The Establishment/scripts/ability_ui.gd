@@ -18,6 +18,9 @@ func display_hack():
 	letter.text = "E"
 	text.text = "Hack"
 	
+func undisplay_hack():
+	$AbilityPanel.visible = false
+	
 func display_ability(ability_name: String):
 	$AbilityPanel.visible = true
 	text.get_label_settings().font_size = basefontsize

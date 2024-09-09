@@ -25,6 +25,7 @@ func _process(delta):
 		return
 	for node in nodes_in_hack_area:
 		if not node is player: return
+		node.get_node("CharacterUI").undisplay_hack()
 		var progress_bar = node.get_node("CharacterUI/ProgressBar")
 		var progress_panel = progress_bar.get_node("Panel")
 		node.get_node("CharacterUI").set_progress_percent(1 - hacking_timer.time_left / hacking_timer.wait_time)

@@ -123,6 +123,7 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -214,6 +215,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -274,6 +276,7 @@ offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="SkillCheck" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -340,7 +343,7 @@ pivot_offset = Vector2(32, 32)
 
 [node name="Node2D" type="Node2D" parent="CharacterUI/SkillCheck/Control2"]
 position = Vector2(32, 32)
-rotation = 3.07003
+rotation = 2.1101
 
 [node name="Control" type="Control" parent="CharacterUI/SkillCheck/Control2/Node2D"]
 clip_contents = true
