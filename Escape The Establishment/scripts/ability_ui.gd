@@ -32,8 +32,23 @@ func display_ability(ability_name: String):
 			letter.text = "L"
 			text.text = "oOOOPS!!"
 	fix_text_size()
-			
+
 func fix_text_size():
 	while text.get_line_count() > 1:
 		text.get_label_settings().font_size = text.get_label_settings().font_size - 1
-	#kill me pleaes this took way too long i hate godot ioajickltadnfka,
+
+func display_skillcheck():
+	$SkillCheck.visible = true
+
+func undisplay_skillcheck():
+	$SkillCheck.visible = false
+
+func increase_needle_rotation(rotation): #clamping at full rotation
+	$SkillCheck/Needle.rotation += rotation
+	$SkillCheck/Needle.rotation = min($SkillCheck/Needle.rotation, 2 * PI)
+
+func get_needle_rotation():
+	return $SkillCheck/Needle.rotation_degrees
+
+func get_success_zone_degree():
+	return $SkillCheck/SkillcheckRing.rotation_degrees + 225

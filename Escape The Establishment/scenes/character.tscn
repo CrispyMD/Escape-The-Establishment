@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bte1j3ynvf0re"]
+[gd_scene load_steps=16 format=3 uid="uid://bte1j3ynvf0re"]
 
 [ext_resource type="Script" path="res://scripts/character_script.gd" id="1_vew7i"]
 [ext_resource type="FontFile" uid="uid://bued63pcmgjnq" path="res://assets/Poppins-SemiBold.ttf" id="2_mr3gc"]
 [ext_resource type="Script" path="res://scripts/ability_ui.gd" id="2_njcvc"]
 [ext_resource type="FontFile" uid="uid://b1fkbwbmmjphq" path="res://assets/Poppins-Light.ttf" id="3_ypbdt"]
+[ext_resource type="Texture2D" uid="uid://caeq7yqhddwx4" path="res://assets/black_ring.png" id="5_28w1q"]
+[ext_resource type="Texture2D" uid="uid://cmoisupixk4og" path="res://assets/light_lilac_ring.png" id="6_dkhol"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_35hl4"]
 
@@ -45,42 +47,6 @@ bg_color = Color(0.0431373, 0, 0.129412, 0.509804)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ims4y"]
 bg_color = Color(0.921569, 0.905882, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnw68"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 12
-border_width_top = 12
-border_width_right = 12
-border_width_bottom = 12
-border_color = Color(0.921569, 0.905882, 1, 1)
-corner_radius_top_left = 1024
-corner_radius_top_right = 1024
-corner_radius_bottom_right = 1024
-corner_radius_bottom_left = 1024
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmj7k"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 12
-border_width_top = 12
-border_width_right = 12
-border_width_bottom = 12
-border_color = Color(0.0431373, 0, 0.129412, 1)
-corner_radius_top_left = 1024
-corner_radius_top_right = 1024
-corner_radius_bottom_right = 1024
-corner_radius_bottom_left = 1024
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnewf"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 13
-border_width_top = 13
-border_width_right = 13
-border_width_bottom = 13
-border_color = Color(0.0431373, 0, 0.129412, 1)
-corner_radius_top_left = 1024
-corner_radius_top_right = 1024
-corner_radius_bottom_right = 1024
-corner_radius_bottom_left = 1024
-
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_vew7i")
@@ -112,10 +78,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 8.0
-offset_right = 12.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -123,6 +85,7 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -214,6 +177,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -273,95 +237,50 @@ offset_right = 290.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
-[node name="SkillCheck" type="Panel" parent="CharacterUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.822
-anchor_right = 0.5
-anchor_bottom = 0.822
-offset_left = -32.0
-offset_top = -64.656
-offset_right = 32.0
-offset_bottom = -0.656128
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dnw68")
-
-[node name="Control" type="Control" parent="CharacterUI/SkillCheck"]
+[node name="SkillCheck" type="Control" parent="CharacterUI"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Container" type="Control" parent="CharacterUI/SkillCheck/Control"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.00031
-offset_top = -46.9998
-offset_right = 67.9997
-offset_bottom = 19.0002
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.785398
+[node name="BlackRing1" type="Sprite2D" parent="CharacterUI/SkillCheck"]
+position = Vector2(577, 475)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_28w1q")
+offset = Vector2(-180, 180)
 
-[node name="Panel" type="Panel" parent="CharacterUI/SkillCheck/Control/Container"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.619
-anchor_top = 0.5
-anchor_right = 1.619
-anchor_bottom = 0.5
-offset_left = -77.9368
-offset_top = -46.1802
-offset_right = -13.9368
-offset_bottom = 17.8198
-rotation = 0.785398
-theme_override_styles/panel = SubResource("StyleBoxFlat_nmj7k")
+[node name="BlackRing2" type="Sprite2D" parent="CharacterUI/SkillCheck"]
+position = Vector2(577, 475)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_28w1q")
+offset = Vector2(-180, 180)
 
-[node name="Control2" type="Control" parent="CharacterUI/SkillCheck"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 0.00012207
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
+[node name="BlackRing3" type="Sprite2D" parent="CharacterUI/SkillCheck"]
+position = Vector2(577, 475)
+rotation = 3.14159
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_28w1q")
+offset = Vector2(-180, 180)
 
-[node name="Node2D" type="Node2D" parent="CharacterUI/SkillCheck/Control2"]
-position = Vector2(32, 32)
-rotation = 3.07003
+[node name="BlackRing4" type="Sprite2D" parent="CharacterUI/SkillCheck"]
+position = Vector2(577, 475)
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_28w1q")
+offset = Vector2(-180, 180)
 
-[node name="Control" type="Control" parent="CharacterUI/SkillCheck/Control2/Node2D"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SkillcheckRing" type="Sprite2D" parent="CharacterUI/SkillCheck"]
+position = Vector2(577, 475)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_dkhol")
+offset = Vector2(-178.948, 178.947)
 
-[node name="Panel" type="Panel" parent="CharacterUI/SkillCheck/Control2/Node2D/Control"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = -62.0
-offset_right = 97.0
-offset_bottom = 3.0
-grow_vertical = 2
-rotation = 0.785398
-theme_override_styles/panel = SubResource("StyleBoxFlat_lnewf")
+[node name="Needle" type="ColorRect" parent="CharacterUI/SkillCheck"]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 411.0
+offset_right = 580.0
+offset_bottom = 431.0
+pivot_offset = Vector2(3, 64)
+color = Color(1, 0, 0, 1)

@@ -48,8 +48,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226482, 1.21969, 1.79544)
 shape = SubResource("BoxShape3D_ro3oh")
 
 [node name="HackingTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 12.0
+
+[node name="SkillCheckTimer" type="Timer" parent="."]
+wait_time = 9.0
+
+[node name="StartNeedleRotationTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="HackAreas" to="." method="_on_hack_areas_body_entered"]
 [connection signal="body_exited" from="HackAreas" to="." method="_on_hack_areas_body_exited"]
 [connection signal="timeout" from="HackingTimer" to="." method="_on_hacking_timer_timeout"]
+[connection signal="timeout" from="SkillCheckTimer" to="." method="_on_skill_check_timer_timeout"]
+[connection signal="timeout" from="StartNeedleRotationTimer" to="." method="_on_start_needle_rotation_timer_timeout"]
