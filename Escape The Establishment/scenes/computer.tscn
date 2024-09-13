@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=9 format=3 uid="uid://bro1jq2gxhirb"]
 
 [ext_resource type="Script" path="res://scripts/computer.gd" id="1_8ojk8"]
 [ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
+[ext_resource type="Texture2D" uid="uid://caeq7yqhddwx4" path="res://assets/black_ring.png" id="3_nhl2q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_718ga"]
 size = Vector3(0.384338, 1.36488, 2.55933)
@@ -54,6 +55,11 @@ wait_time = 12.0
 wait_time = 9.0
 
 [node name="StartNeedleRotationTimer" type="Timer" parent="."]
+
+[node name="ComputerFailSprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 1.18024, 3.83709, 0.0579631)
+visible = false
+texture = ExtResource("3_nhl2q")
 
 [connection signal="body_entered" from="HackAreas" to="." method="_on_hack_areas_body_entered"]
 [connection signal="body_exited" from="HackAreas" to="." method="_on_hack_areas_body_exited"]

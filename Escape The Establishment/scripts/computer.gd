@@ -9,15 +9,15 @@ var time_for_full_roation_of_needle = 1 #in seconds
 var needle_is_rotating = false
 
 func _on_hack_areas_body_entered(body):
-	nodes_in_hack_area.push_front(body)
 	if not body is player: return
+	nodes_in_hack_area.push_front(body)
 	body.interact_pressed.connect(hack_computer)
 	
 	body.get_node("CharacterUI").display_hack()
 
 func _on_hack_areas_body_exited(body):
-	nodes_in_hack_area.erase(body)
 	if not body is player: return
+	nodes_in_hack_area.erase(body)
 	body.interact_pressed.disconnect(hack_computer)
 	body.get_node("CharacterUI").undisplay_all()
 
@@ -37,8 +37,8 @@ func _process(delta):
 
 func handle_skillcheck(delta):
 	for node in nodes_in_hack_area:
-		if not node is player: continue
-		node.get_node("CharacterUI").increase_needle_rotation(delta )
+		#if not node is player: continue <-- not needed now since only players are added to array
+		node.get_node("CharacterUI").increase_needle_rotation(delta)
 
 func skillcheck_pressed(character):
 	var success_zone = character.get_node("CharacterUI").get_success_zone_degree()
@@ -46,10 +46,15 @@ func skillcheck_pressed(character):
 	var offset = abs(success_zone - needle_rotation)
 	if offset <= 45:
 		print("succeeded")
+	else:
+		$ComputerFailSprite.visible = true
+		print("faoieled >:(")
+	character.get_node("CharacterUI").undisplay_skillcheck()
+	needle_is_rotating = false
 
 func handle_progress_bar():
 	for node in nodes_in_hack_area:
-		if not node is player: continue
+		#if not node is player: continue
 		node.get_node("CharacterUI").undisplay_hack()
 		var progress_bar = node.get_node("CharacterUI/ProgressBar")
 		var progress_panel = progress_bar.get_node("Panel")
@@ -63,7 +68,7 @@ func _on_skill_check_timer_timeout():
 	hacking_timer.paused = true
 	start_needle_rotation_timer.start()
 	for node in nodes_in_hack_area:
-		if not node is player: continue
+		#if not node is player: continue
 		node.get_node("CharacterUI").display_skillcheck()
 
 func _on_start_needle_rotation_timer_timeout():
