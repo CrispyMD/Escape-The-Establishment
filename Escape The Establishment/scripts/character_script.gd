@@ -12,7 +12,6 @@ const SENSITIVITY = 0.1
 
 var camera_mode_is_fps = false
 @export var is_beast = false
-#const Computer = preload("res://scripts/computer.gd")
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 

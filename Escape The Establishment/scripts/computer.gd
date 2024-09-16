@@ -7,6 +7,8 @@ var computer_is_hacked = false
 @onready var start_needle_rotation_timer = $StartNeedleRotationTimer
 var time_for_full_roation_of_needle = 1 #in seconds
 var needle_is_rotating = false
+@onready var red_screen = $RedScreen
+@onready var computer_fail_sprite = $ComputerFailSprite
 
 func _on_hack_areas_body_entered(body):
 	if not body is player: return
@@ -27,13 +29,11 @@ func hack_computer(character):
 	hacking_timer.start()
 	skill_check_timer.start()
 
-
 func _process(delta):
 	if hacking_timer.time_left == 0 or computer_is_hacked:
 		return
 	handle_progress_bar()
 	if needle_is_rotating: handle_skillcheck(delta)
-
 
 func handle_skillcheck(delta):
 	for node in nodes_in_hack_area:
@@ -47,8 +47,9 @@ func skillcheck_pressed(character):
 	if offset <= 45:
 		print("succeeded")
 	else:
-		$ComputerFailSprite.visible = true
+		skillcheck_failed()
 		print("faoieled >:(")
+	
 	character.get_node("CharacterUI").undisplay_skillcheck()
 	needle_is_rotating = false
 
@@ -73,3 +74,7 @@ func _on_skill_check_timer_timeout():
 
 func _on_start_needle_rotation_timer_timeout():
 	needle_is_rotating = true
+
+func skillcheck_failed():
+	red_screen.show()
+	computer_fail_sprite.visible = true

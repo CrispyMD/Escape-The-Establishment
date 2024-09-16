@@ -85,6 +85,7 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -238,6 +239,7 @@ offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="SkillCheck" type="Control" parent="CharacterUI"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

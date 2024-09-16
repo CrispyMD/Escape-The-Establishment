@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=11 format=3 uid="uid://bro1jq2gxhirb"]
 
 [ext_resource type="Script" path="res://scripts/computer.gd" id="1_8ojk8"]
 [ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
@@ -18,6 +18,11 @@ size = Vector3(1.43347, 1.79625, 2.04797)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ro3oh"]
 size = Vector3(2.03461, 1.86412, 1.30396)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_131uf"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kqubi"]
 
 [node name="Computer" type="StaticBody3D"]
 script = ExtResource("1_8ojk8")
@@ -61,6 +66,12 @@ transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 1.18024, 3.83709, 0.
 visible = false
 billboard = 1
 texture = ExtResource("3_nhl2q")
+
+[node name="RedScreen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.071, 0, 0, 0, 0.862, 0, 0, 0, 2.42, 1.25077, 2.0464, 0.075)
+visible = false
+material_override = SubResource("StandardMaterial3D_131uf")
+mesh = SubResource("BoxMesh_kqubi")
 
 [connection signal="body_entered" from="HackAreas" to="." method="_on_hack_areas_body_entered"]
 [connection signal="body_exited" from="HackAreas" to="." method="_on_hack_areas_body_exited"]
