@@ -59,6 +59,7 @@ wait_time = 9.0
 [node name="ComputerFailSprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 1.18024, 3.83709, 0.0579631)
 visible = false
+billboard = 1
 texture = ExtResource("3_nhl2q")
 
 [connection signal="body_entered" from="HackAreas" to="." method="_on_hack_areas_body_entered"]

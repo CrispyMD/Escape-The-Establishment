@@ -85,17 +85,16 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.909
 anchor_right = 0.5
 anchor_bottom = 0.909
-offset_left = -80.0
+offset_left = -183.0
 offset_top = -40.032
-offset_right = 80.0
-offset_bottom = -0.0320435
+offset_right = 183.0
+offset_bottom = -0.0319824
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -135,6 +134,25 @@ label_settings = SubResource("LabelSettings_2ab3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AbilityText" type="Label" parent="CharacterUI/AbilityPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -20.0
+offset_right = 57.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ability"
+label_settings = SubResource("LabelSettings_qaaxn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CharacterUI/AbilityPanel"]
 visible = false
 layout_mode = 1
@@ -159,25 +177,7 @@ text = "Ability ewe"
 fit_content = true
 scroll_active = false
 
-[node name="AbilityText" type="Label" parent="CharacterUI/AbilityPanel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Ability"
-label_settings = SubResource("LabelSettings_qaaxn")
-vertical_alignment = 1
-autowrap_mode = 1
-
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -238,7 +238,6 @@ offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="SkillCheck" type="Control" parent="CharacterUI"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
