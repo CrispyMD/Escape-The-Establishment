@@ -39,7 +39,6 @@ func _unhandled_input(event):
 		pass
 	if Input.is_action_just_pressed("interact"):
 		interact_pressed.emit(self)
-		progress_bar.show()
 	if Input.is_action_just_pressed("switch_pov"):
 		switch_pov()
 

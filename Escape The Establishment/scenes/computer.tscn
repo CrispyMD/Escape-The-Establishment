@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=12 format=3 uid="uid://bro1jq2gxhirb"]
 
 [ext_resource type="Script" path="res://scripts/computer.gd" id="1_8ojk8"]
 [ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
@@ -19,10 +19,13 @@ size = Vector3(1.43347, 1.79625, 2.04797)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ro3oh"]
 size = Vector3(2.03461, 1.86412, 1.30396)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_131uf"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsj6n"]
+albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kqubi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_131uf"]
+albedo_color = Color(1, 0, 0, 1)
 
 [node name="Computer" type="StaticBody3D"]
 script = ExtResource("1_8ojk8")
@@ -54,19 +57,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226482, 1.21969, 1.79544)
 shape = SubResource("BoxShape3D_ro3oh")
 
 [node name="HackingTimer" type="Timer" parent="."]
-wait_time = 12.0
+wait_time = 10.0
+one_shot = true
 
 [node name="SkillCheckTimer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 5.0
+one_shot = true
 
 [node name="StartNeedleRotationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="UndisplaySkillcheckFailedTimer" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="ComputerFailSprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.0509027, 0, 0, 0, 0.0509027, 0, 0, 0, 0.220012, 1.18024, 3.07301, 0.0579631)
+visible = false
 billboard = 1
 no_depth_test = true
 fixed_size = true
 texture = ExtResource("3_nhl2q")
+
+[node name="GreenScreen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.072, 0, 0, 0, 0.874, 0, 0, 0, 2.454, 1.25077, 2.0464, 0.075)
+visible = false
+material_override = SubResource("StandardMaterial3D_rsj6n")
+mesh = SubResource("BoxMesh_kqubi")
 
 [node name="RedScreen" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.071, 0, 0, 0, 0.862, 0, 0, 0, 2.42, 1.25077, 2.0464, 0.075)
@@ -79,3 +95,4 @@ mesh = SubResource("BoxMesh_kqubi")
 [connection signal="timeout" from="HackingTimer" to="." method="_on_hacking_timer_timeout"]
 [connection signal="timeout" from="SkillCheckTimer" to="." method="_on_skill_check_timer_timeout"]
 [connection signal="timeout" from="StartNeedleRotationTimer" to="." method="_on_start_needle_rotation_timer_timeout"]
+[connection signal="timeout" from="UndisplaySkillcheckFailedTimer" to="." method="_on_undisplay_skillcheck_failed_timer_timeout"]

@@ -11,16 +11,23 @@ func set_progress_percent(percent: float):
 func undisplay_all():
 	$AbilityPanel.visible = false
 	$ProgressBar.visible = false
-	
+	$SkillCheck.visible = false
+
+func display_progress_bar():
+	$ProgressBar.visible = true
+
+func undisplay_progress_bar():
+	$ProgressBar.visible = false
+
 func display_hack():
 	$AbilityPanel.visible = true
 	text.get_label_settings().font_size = basefontsize
 	letter.text = "E"
 	text.text = "Hack"
-	
+
 func undisplay_hack():
 	$AbilityPanel.visible = false
-	
+
 func display_ability(ability_name: String):
 	$AbilityPanel.visible = true
 	text.get_label_settings().font_size = basefontsize
@@ -43,9 +50,10 @@ func display_skillcheck():
 func undisplay_skillcheck():
 	$SkillCheck.visible = false
 
-func increase_needle_rotation(rotation): #clamping at full rotation
+func increase_needle_rotation(rotation):
 	$SkillCheck/Needle.rotation += rotation
 	$SkillCheck/Needle.rotation = min($SkillCheck/Needle.rotation, 2 * PI)
+	#clamping at full rotation
 
 func get_needle_rotation():
 	return $SkillCheck/Needle.rotation_degrees
