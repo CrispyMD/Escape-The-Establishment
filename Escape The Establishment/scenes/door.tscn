@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c46lq417eb8j6"]
+
+[ext_resource type="Script" path="res://scripts/door_rotating.gd" id="1_i1dyx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cx1ex"]
+size = Vector3(0.302477, 2.25242, 1.23771)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gi8na"]
+points = PackedVector3Array(0.151238, 1.12621, 0.618853, -0.151238, 1.12621, 0.618853, 0.151238, -1.12621, 0.618853, 0.151238, 1.12621, -0.618853, -0.151238, 1.12621, -0.618853, -0.151238, -1.12621, 0.618853, 0.151238, -1.12621, -0.618853, -0.151238, -1.12621, -0.618853)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyvvo"]
+size = Vector3(2.617, 2.252, 1.238)
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_i1dyx")
+
+[node name="RotatePoint" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatePoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12711, 0.619871)
+mesh = SubResource("BoxMesh_cx1ex")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatePoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12711, 0.619871)
+shape = SubResource("ConvexPolygonShape3D_gi8na")
+
+[node name="OpeningDoorArea" type="Area3D" parent="."]
+
+[node name="OpeningDoorCollision" type="CollisionShape3D" parent="OpeningDoorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12711, 0.619871)
+shape = SubResource("BoxShape3D_iyvvo")
+
+[connection signal="body_entered" from="OpeningDoorArea" to="." method="_on_opening_door_area_body_entered"]

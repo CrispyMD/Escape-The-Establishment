@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cat1tfhnntnv8"]
+[gd_scene load_steps=9 format=3 uid="uid://cat1tfhnntnv8"]
 
 [ext_resource type="PackedScene" uid="uid://bte1j3ynvf0re" path="res://scenes/character.tscn" id="1_tjt32"]
 [ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
+[ext_resource type="PackedScene" uid="uid://c46lq417eb8j6" path="res://scenes/door.tscn" id="3_x7cd2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6cubu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,10 +49,13 @@ shape = SubResource("ConcavePolygonShape3D_s1t4v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.95363, 1.45925, 0)
 
 [node name="Box" type="MeshInstance3D" parent="."]
-transform = Transform3D(6.24832, 0, 0, 0, 2.9481, 0, 0, 0, 8.02386, 0, 1.17124, 0)
+transform = Transform3D(6.24832, 0, 0, 0, 2.9481, 0, 0, 0, 8.02386, 0, 1.17124, -11.7706)
 mesh = SubResource("BoxMesh_t0s5s")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Box"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_s1t4v")
+
+[node name="Door" parent="." instance=ExtResource("3_x7cd2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.78894, 0, -5.91757)

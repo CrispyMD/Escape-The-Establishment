@@ -40,6 +40,12 @@ func display_ability(ability_name: String):
 			text.text = "oOOOPS!!"
 	fix_text_size()
 
+func display_open_door():
+	pass
+
+func undisplay_open_door():
+	pass
+
 func fix_text_size():
 	while text.get_line_count() > 1:
 		text.get_label_settings().font_size = text.get_label_settings().font_size - 1
