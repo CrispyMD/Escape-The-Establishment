@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/Poppins-SemiBold.ttf-9d86f25f37c92107ed16fc62
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

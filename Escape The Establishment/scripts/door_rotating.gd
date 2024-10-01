@@ -8,9 +8,9 @@ const TIME_TO_OPEN_DOOR = 1 #seconds
 func _on_opening_door_area_body_entered(body):
 	if not body is player: return
 	print("fgbhb")
-	#nodes_in_area.append(body)
-	#body.interact_pressed.connect(open_door)
-	#body.get_node("CharacterUI").display_hack()
+	nodes_in_area.append(body)
+	body.interact_pressed.connect(open_door)
+	body.get_node("CharacterUI").display_hack()
 
 func open_door(character):
 	print("Jimmy Newtron")
@@ -22,4 +22,3 @@ func _process(delta):
 	print($OpeningDoorArea/OpeningDoorCollision.rotation)
 	print($OpeningDoorArea/OpeningDoorCollision.global_rotation)
 	print("-----------------")
-
