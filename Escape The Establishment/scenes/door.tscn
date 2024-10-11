@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c46lq417eb8j6"]
+[gd_scene load_steps=8 format=3 uid="uid://c46lq417eb8j6"]
 
 [ext_resource type="Script" path="res://scripts/door_rotating.gd" id="1_i1dyx"]
 
@@ -10,6 +10,32 @@ points = PackedVector3Array(0.151238, 1.12621, 0.618853, -0.151238, 1.12621, 0.6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyvvo"]
 size = Vector3(2.617, 2.252, 1.238)
+
+[sub_resource type="Animation" id="Animation_l6dhf"]
+resource_name = "rotate_door"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotatePoint")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.707, 0, 0.707)
+
+[sub_resource type="Animation" id="Animation_wvk6w"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotatePoint")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jaeho"]
+_data = {
+"RESET": SubResource("Animation_wvk6w"),
+"rotate_door": SubResource("Animation_l6dhf")
+}
 
 [node name="Door" type="Node3D"]
 script = ExtResource("1_i1dyx")
@@ -31,4 +57,11 @@ shape = SubResource("ConvexPolygonShape3D_gi8na")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12711, 0.619871)
 shape = SubResource("BoxShape3D_iyvvo")
 
+[node name="OpenDoorAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jaeho")
+}
+
 [connection signal="body_entered" from="OpeningDoorArea" to="." method="_on_opening_door_area_body_entered"]
+[connection signal="body_exited" from="OpeningDoorArea" to="." method="_on_opening_door_area_body_exited"]
+[connection signal="animation_finished" from="OpenDoorAnimationPlayer" to="." method="_on_open_door_animation_player_animation_finished"]
