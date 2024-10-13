@@ -40,14 +40,14 @@ func display_ability(ability_name: String):
 			text.text = "oOOOPS!!"
 	fix_text_size()
 
+func undisplay_interact():
+	$AbilityPanel.visible = false
+
 func display_open_door():
 	$AbilityPanel.visible = true
 	text.get_label_settings().font_size = basefontsize
 	letter.text = "E"
 	text.text = "Open"
-
-func undisplay_open_door():
-	$AbilityPanel.visible = false
 
 func fix_text_size():
 	while text.get_line_count() > 1:
