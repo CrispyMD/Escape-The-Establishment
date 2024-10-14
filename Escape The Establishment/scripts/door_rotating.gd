@@ -12,7 +12,7 @@ func _on_opening_door_area_body_entered(body):
 	if not body is player: return
 	nodes_in_area.append(body)
 	body.interact_pressed.connect(open_door)
-	body.get_node("CharacterUI").display_open_door()
+	display_open_close(body)
 
 func _on_opening_door_area_body_exited(body):
 	if not body is player: return
@@ -38,11 +38,16 @@ func open_door(character):
 		animation_player.play("beast_open_door")
 	else:
 		animation_player.play("survivor_open_door")
+	character.get_node("CharacterUI").undisplay_interact()
 	character.get_node("CharacterUI").display_progress_bar()
 	character.get_node("CharacterUI").set_progress_percent(0)
 
 func stop_handling_progress_bar():
+	player_using_door.get_node("CharacterUI").undisplay_interact()
 	player_using_door.get_node("CharacterUI").undisplay_progress_bar()
+	for areanodes in nodes_in_area:
+		if areanodes is not player: pass
+		areanodes.get_node("CharacterUI").display_close_door()
 	player_using_door = null
 	should_handle_progress_bar = false
 
@@ -63,3 +68,7 @@ func set_door_is_opened(state: bool):
 
 func reset_player_using_door():
 	player_using_door = null
+	
+func display_open_close(body):
+	if door_is_opened: body.get_node("CharacterUI").display_close_door()
+	else: body.get_node("CharacterUI").display_open_door()

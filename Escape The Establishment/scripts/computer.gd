@@ -14,6 +14,7 @@ var NEEDLE_SPEED = 2 * PI #needle will rotate at 1sec with 2pi
 
 func _on_hack_areas_body_entered(body):
 	if not body is player or computer_is_hacked: return
+	if body.is_beast: return
 	nodes_in_hack_area.push_front(body)
 	body.interact_pressed.connect(hack_computer)
 	
@@ -31,7 +32,7 @@ func _on_hack_areas_body_exited(body):
 		body.interact_pressed.disconnect(hack_computer)
 	elif body.interact_pressed.is_connected(skillcheck_pressed):
 		body.interact_pressed.disconnect(skillcheck_pressed)
-	body.get_node("CharacterUI").undisplay_all()
+	body.get_node("CharacterUI").undisplay_interact()
 
 func hack_computer(character):
 	if needle_is_rotating: skillcheck_failed()
@@ -76,7 +77,7 @@ func handle_progress_bar():
 	if hacking_timer.paused or computer_is_hacked or hacking_timer.time_left == 0: return
 	
 	for node in nodes_in_hack_area:
-		node.get_node("CharacterUI").undisplay_hack()
+		node.get_node("CharacterUI").undisplay_interact()
 		node.get_node("CharacterUI").set_progress_percent(1 - hacking_timer.time_left / hacking_timer.wait_time)
 
 func _on_hacking_timer_timeout():

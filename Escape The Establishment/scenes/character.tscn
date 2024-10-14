@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bte1j3ynvf0re"]
+[gd_scene load_steps=20 format=3 uid="uid://bte1j3ynvf0re"]
 
 [ext_resource type="Script" path="res://scripts/character_script.gd" id="1_vew7i"]
 [ext_resource type="FontFile" uid="uid://bued63pcmgjnq" path="res://assets/Poppins-SemiBold.ttf" id="2_mr3gc"]
@@ -47,9 +47,38 @@ bg_color = Color(0.0431373, 0, 0.129412, 0.509804)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ims4y"]
 bg_color = Color(0.921569, 0.905882, 1, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgdpr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh6gu"]
+bg_color = Color(0.921569, 0.905882, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0431373, 0, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_8dsje"]
+line_spacing = 0.0
+font = ExtResource("2_mr3gc")
+font_size = 32
+font_color = Color(0.0431373, 0, 0.129412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aylmd"]
+line_spacing = 0.1
+font = ExtResource("3_ypbdt")
+font_size = 28
+font_color = Color(0.921569, 0.905882, 1, 1)
+outline_size = 6
+outline_color = Color(0.0431373, 0, 0.129412, 1)
+
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_vew7i")
+is_beast = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_35hl4")
@@ -85,6 +114,7 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -181,13 +211,13 @@ scroll_active = false
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
+anchor_left = 0.4
 anchor_top = 0.983
-anchor_right = 0.5
+anchor_right = 0.6
 anchor_bottom = 0.983
 offset_left = -147.0
 offset_top = -38.984
-offset_right = 147.0
+offset_right = 146.6
 offset_bottom = 0.0159912
 grow_horizontal = 2
 grow_vertical = 0
@@ -218,15 +248,15 @@ color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="ColorRect30" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
 layout_mode = 0
-offset_left = 290.0
-offset_right = 294.0
+offset_left = 520.2
+offset_right = 524.2
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="ColorRect31" type="ColorRect" parent="CharacterUI/ProgressBar/Border"]
 layout_mode = 0
 offset_left = 4.0
-offset_right = 290.0
+offset_right = 520.0
 offset_bottom = 4.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
@@ -234,9 +264,61 @@ color = Color(0.0431373, 0, 0.129412, 0.509804)
 layout_mode = 0
 offset_left = 4.0
 offset_top = 35.0
-offset_right = 290.0
+offset_right = 520.0
 offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
+
+[node name="InteractPanel" type="PanelContainer" parent="CharacterUI"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.983
+anchor_right = 0.5
+anchor_bottom = 0.983
+offset_left = -147.0
+offset_top = -38.0
+offset_right = 147.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cgdpr")
+
+[node name="GodotIsStupidIHateIt" type="Control" parent="CharacterUI/InteractPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="LetterBackgroundPanel" type="Panel" parent="CharacterUI/InteractPanel/GodotIsStupidIHateIt"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 34.0
+offset_bottom = 17.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jh6gu")
+
+[node name="AbilityLetter" type="Label" parent="CharacterUI/InteractPanel/GodotIsStupidIHateIt/LetterBackgroundPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+label_settings = SubResource("LabelSettings_8dsje")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilityText" type="Label" parent="CharacterUI/InteractPanel"]
+layout_mode = 2
+text = "Interact"
+label_settings = SubResource("LabelSettings_aylmd")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SkillCheck" type="Control" parent="CharacterUI"]
 visible = false
