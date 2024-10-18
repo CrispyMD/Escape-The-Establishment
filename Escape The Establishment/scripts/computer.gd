@@ -111,3 +111,6 @@ func _on_undisplay_skillcheck_failed_timer_timeout():
 func display_computer_as_failed():
 	red_screen.show()
 	computer_fail_sprite.visible = true
+	
+func set_computer_is_hacked(state: bool):
+	computer_is_hacked = state

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bro1jq2gxhirb"]
+[gd_scene load_steps=16 format=3 uid="uid://bro1jq2gxhirb"]
 
 [ext_resource type="Script" path="res://scripts/computer.gd" id="1_8ojk8"]
 [ext_resource type="PackedScene" uid="uid://rooi3kt4fig" path="res://assets/computer.glb" id="1_gxfcd"]
@@ -26,6 +26,37 @@ albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_131uf"]
 albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_rwfig"]
+resource_name = "hack_total"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_computer_is_hacked"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqo2m"]
+_data = {
+"hack_total": SubResource("Animation_rwfig")
+}
+
+[sub_resource type="Animation" id="Animation_j5epb"]
+resource_name = "skill_check"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtdgi"]
+_data = {
+"skill_check": SubResource("Animation_j5epb")
+}
 
 [node name="Computer" type="StaticBody3D"]
 script = ExtResource("1_8ojk8")
@@ -89,6 +120,17 @@ transform = Transform3D(0.071, 0, 0, 0, 0.862, 0, 0, 0, 2.42, 1.25077, 2.0464, 0
 visible = false
 material_override = SubResource("StandardMaterial3D_131uf")
 mesh = SubResource("BoxMesh_kqubi")
+
+[node name="ComputerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pqo2m")
+}
+
+[node name="SkillCheckAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SkillCheckTimer")
+libraries = {
+"": SubResource("AnimationLibrary_rtdgi")
+}
 
 [connection signal="body_entered" from="HackAreas" to="." method="_on_hack_areas_body_entered"]
 [connection signal="body_exited" from="HackAreas" to="." method="_on_hack_areas_body_exited"]
