@@ -78,7 +78,6 @@ outline_color = Color(0.0431373, 0, 0.129412, 1)
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_vew7i")
-is_beast = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_35hl4")

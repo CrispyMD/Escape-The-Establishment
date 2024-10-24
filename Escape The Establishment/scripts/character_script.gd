@@ -10,8 +10,8 @@ const SENSITIVITY = 0.1
 @onready var tps_camera = $SpringArm3D/TpsCamera
 @onready var spring = $SpringArm3D
 
-var camera_mode_is_fps = false
-@export var is_beast = false
+@onready var camera_mode_is_fps = false
+@onready var is_beast = false
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
@@ -19,7 +19,9 @@ func _ready():
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if is_beast != camera_mode_is_fps: switch_pov()
-	if is_beast: $CharacterUI.display_ability("ODSJ")
+	if is_beast:
+		print("aaa")
+		$CharacterUI.display_ability("ODSJ")
 
 func handle_camera_movement(event):
 	if camera_mode_is_fps:

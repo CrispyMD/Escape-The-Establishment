@@ -1,6 +1,7 @@
 extends StaticBody3D
 
 var nodes_in_hack_area = []
+var player_hacking_computer = []
 @onready var hacking_timer = $HackingTimer
 var computer_is_hacked = false
 @onready var skill_check_timer = $SkillCheckTimer
@@ -23,6 +24,7 @@ func _on_hack_areas_body_entered(body):
 func _on_hack_areas_body_exited(body):
 	if not body is player: return
 	nodes_in_hack_area.erase(body)
+	player_hacking_computer.erase(body)
 	
 	if nodes_in_hack_area.is_empty():
 		hacking_timer.paused = true
@@ -43,6 +45,7 @@ func hack_computer(character):
 	
 	hacking_timer.paused = false
 	skill_check_timer.paused = false
+	player_hacking_computer.append(character)
 	
 	if skill_check_timer.time_left == 0: skill_check_timer.start()
 	if hacking_timer.time_left == 0: hacking_timer.start()
@@ -76,7 +79,7 @@ func skillcheck_pressed(character):
 func handle_progress_bar():
 	if hacking_timer.paused or computer_is_hacked or hacking_timer.time_left == 0: return
 	
-	for node in nodes_in_hack_area:
+	for node in player_hacking_computer:
 		node.get_node("CharacterUI").undisplay_interact()
 		node.get_node("CharacterUI").set_progress_percent(1 - hacking_timer.time_left / hacking_timer.wait_time)
 
@@ -86,6 +89,8 @@ func _on_hacking_timer_timeout():
 	$GreenScreen.show()
 	for hack_area in $HackAreas.get_children():
 		hack_area.disabled = true
+	for node in player_hacking_computer:
+		node.get_node("CharacterUI").undisplay_progress_bar()
 
 func _on_skill_check_timer_timeout():
 	hacking_timer.paused = true

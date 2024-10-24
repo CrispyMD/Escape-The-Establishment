@@ -13,9 +13,10 @@ func undisplay_all():
 var basefontsize = 28
 
 func display_ability(ability_name: String):
+	print("fdnkbob")
 	A_text.get_label_settings().font_size = basefontsize
 	match ability_name.to_lower():
-		"Runner":
+		"runner":
 			A_letter.text = "Q"
 			A_text.text = "RunnnrernuLOSal"
 		_:
