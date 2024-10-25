@@ -26,6 +26,7 @@ func _on_hack_areas_body_exited(body):
 	nodes_in_hack_area.erase(body)
 	player_hacking_computer.erase(body)
 	
+	
 	if nodes_in_hack_area.is_empty():
 		hacking_timer.paused = true
 		skill_check_timer.paused = true
@@ -35,6 +36,7 @@ func _on_hack_areas_body_exited(body):
 	elif body.interact_pressed.is_connected(skillcheck_pressed):
 		body.interact_pressed.disconnect(skillcheck_pressed)
 	body.get_node("CharacterUI").undisplay_interact()
+	body.get_node("CharacterUI").undisplay_progress_bar()
 
 func hack_computer(character):
 	if needle_is_rotating: skillcheck_failed()

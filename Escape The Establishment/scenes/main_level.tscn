@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cat1tfhnntnv8"]
 
-[ext_resource type="PackedScene" uid="uid://bte1j3ynvf0re" path="res://scenes/character.tscn" id="1_tjt32"]
+[ext_resource type="Script" path="res://scripts/multiplayer.gd" id="1_fymt3"]
 [ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
 [ext_resource type="PackedScene" uid="uid://c46lq417eb8j6" path="res://scenes/door.tscn" id="3_x7cd2"]
 
@@ -23,6 +23,7 @@ glow_enabled = true
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="main_level" type="Node3D"]
+script = ExtResource("1_fymt3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x7p88")
@@ -45,9 +46,6 @@ mesh = SubResource("BoxMesh_t0s5s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_s1t4v")
 
-[node name="Character" parent="." instance=ExtResource("1_tjt32")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.95363, 1.45925, 0)
-
 [node name="Box" type="MeshInstance3D" parent="."]
 transform = Transform3D(6.24832, 0, 0, 0, 2.9481, 0, 0, 0, 8.02386, 0, 1.17124, -11.7706)
 mesh = SubResource("BoxMesh_t0s5s")
@@ -59,3 +57,48 @@ shape = SubResource("ConcavePolygonShape3D_s1t4v")
 
 [node name="Door" parent="." instance=ExtResource("3_x7cd2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.78894, 0, -5.91757)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -46.5
+offset_right = 44.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Host" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address to Join Here"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/character.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

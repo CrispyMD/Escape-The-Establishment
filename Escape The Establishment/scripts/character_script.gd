@@ -15,7 +15,12 @@ const SENSITIVITY = 0.1
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 func _ready():
+	if not is_multiplayer_authority(): return
+	
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if is_beast != camera_mode_is_fps: switch_pov()
@@ -34,6 +39,8 @@ func handle_camera_movement(event):
 		spring.rotation.x = clamp(spring.rotation.x, deg_to_rad(-90), deg_to_rad(30))
 
 func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
+	
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if event is InputEventMouseMotion:
@@ -65,6 +72,8 @@ func switch_cameras(to_camera, from_camera):
 	camera_mode_is_fps = not camera_mode_is_fps
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	if Input.is_action_pressed("jump") and is_on_floor():
