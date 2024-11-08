@@ -15,6 +15,14 @@ const SENSITIVITY = 0.1
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
+enum Ability {
+	Runner,
+	Trapper,
+	Ninja,
+	Portaler,
+	Assassin
+}
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 

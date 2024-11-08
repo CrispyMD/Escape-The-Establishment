@@ -12,13 +12,13 @@ func undisplay_all():
 @onready var A_text = $AbilityPanel/AbilityText
 var basefontsize = 28
 
-func display_ability(ability_name: String):
+func display_ability(ability: player.Ability):
 	print("fdnkbob")
 	A_text.get_label_settings().font_size = basefontsize
-	match ability_name.to_lower():
-		"runner":
+	match ability:
+		player.Ability.Runner:
 			A_letter.text = "Q"
-			A_text.text = "RunnnrernuLOSal"
+			A_text.text = "Runner"
 		_:
 			A_letter.text = "L"
 			A_text.text = "oOOOPS!!"
