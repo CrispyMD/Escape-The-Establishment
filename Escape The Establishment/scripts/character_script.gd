@@ -2,7 +2,7 @@ class_name player
 extends CharacterBody3D
 
 const gravity = 14
-const SPEED = 5.0
+@export var SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const SENSITIVITY = 0.1
 @onready var head = $Head
@@ -11,9 +11,13 @@ const SENSITIVITY = 0.1
 @onready var spring = $SpringArm3D
 
 @onready var camera_mode_is_fps = false
-@onready var is_beast = false
+@onready var is_beast = true
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
+
+@export var chosen_ability: Ability 
+@export var ability_on_cooldown = false
+@export var can_jump = true
 
 enum Ability {
 	Runner,
@@ -23,18 +27,13 @@ enum Ability {
 	Assassin
 }
 
-func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
-
 func _ready():
-	if not is_multiplayer_authority(): return
-	
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if is_beast != camera_mode_is_fps: switch_pov()
 	if is_beast:
 		print("aaa")
-		$CharacterUI.display_ability("ODSJ")
+		$CharacterUI.display_ability(Ability.Runner)
 
 func handle_camera_movement(event):
 	if camera_mode_is_fps:
@@ -47,14 +46,22 @@ func handle_camera_movement(event):
 		spring.rotation.x = clamp(spring.rotation.x, deg_to_rad(-90), deg_to_rad(30))
 
 func _unhandled_input(event):
-	if not is_multiplayer_authority(): return
-	
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if event is InputEventMouseMotion:
 		handle_camera_movement(event)
 	if Input.is_action_just_pressed("ability"):
-		pass
+		print("a")
+		if not is_beast: return
+		print("b")
+		if ability_on_cooldown: return
+		print("c")
+		match chosen_ability:
+			player.Ability.Runner:
+				print("d")
+				$BeastAbilityAnimationPlayer.play("runner_ability_timer")
+			_:
+				print("e")
 	if Input.is_action_just_pressed("interact"):
 		interact_pressed.emit(self)
 	if Input.is_action_just_pressed("switch_pov"):
@@ -80,11 +87,9 @@ func switch_cameras(to_camera, from_camera):
 	camera_mode_is_fps = not camera_mode_is_fps
 
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
-	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	if Input.is_action_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor() and can_jump:
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -102,3 +107,11 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+
+#func start_ability_cooldown_count(a: Ability):
+	#match a:
+		#Ability.Runner:
+			#$BeastAbilityAnimationPlayer.play("runner_ability_cooldown")
+	
+	
+	
