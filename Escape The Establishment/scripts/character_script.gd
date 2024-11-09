@@ -23,7 +23,8 @@ enum Ability {
 	Runner,
 	Trapper,
 	Ninja,
-	Portaler,
+	Portaler, #this is the sombrar type portal
+	Pathmaker, #this is the portal like thing you wanted pookie
 	Assassin
 }
 
