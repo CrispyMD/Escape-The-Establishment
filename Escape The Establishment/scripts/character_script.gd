@@ -11,16 +11,17 @@ const SENSITIVITY = 0.1
 @onready var spring = $SpringArm3D
 
 @onready var camera_mode_is_fps = false
-@onready var is_beast = true
+@onready var is_beast = false
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
 @export var chosen_ability: Ability 
 @export var ability_on_cooldown = false
 @export var can_jump = true
+@export var can_move = true
 
 enum Ability {
-	Runner,
+	Runner,#DONE
 	Trapper,
 	Ninja,
 	Portaler, #this is the sombrar type portal
@@ -93,21 +94,28 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump") and is_on_floor() and can_jump:
 		velocity.y = JUMP_VELOCITY
 
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction
-	if camera_mode_is_fps:
-		direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	else:
-		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if can_move:
+		var input_dir = Input.get_vector("left", "right", "forward", "backward")
+		var direction
+		if camera_mode_is_fps:
+			direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		else:
+			direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	move_and_slide()
+		move_and_slide()
+	
+func getAnimationPlayer() -> AnimationPlayer:
+	return $BeastAbilityAnimationPlayer
+	
+func a():
+	print("fs")
 
 #func start_ability_cooldown_count(a: Ability):
 	#match a:

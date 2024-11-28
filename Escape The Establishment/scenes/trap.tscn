@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1yc6wbx5nqpi"]
+
+[ext_resource type="Script" path="res://scripts/trap.gd" id="1_rmsxj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0t4c"]
+albedo_color = Color(0.438277, 0.438277, 0.438277, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q602c"]
+material = SubResource("StandardMaterial3D_b0t4c")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iq57e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qhony"]
+material = SubResource("StandardMaterial3D_iq57e")
+size = Vector3(0.06, 0.015, 0.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tmb2i"]
+height = 0.3
+radius = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bxap7"]
+height = 0.1
+radius = 0.25
+
+[sub_resource type="Animation" id="Animation_qi5db"]
+resource_name = "trap_activated"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x53q0"]
+_data = {
+"trap_activated": SubResource("Animation_qi5db")
+}
+
+[node name="Trap" type="StaticBody3D"]
+script = ExtResource("1_rmsxj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_q602c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("BoxMesh_qhony")
+
+[node name="TrapArea" type="Area3D" parent="."]
+
+[node name="TrapCollision" type="CollisionShape3D" parent="TrapArea"]
+shape = SubResource("CylinderShape3D_tmb2i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("CylinderShape3D_bxap7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x53q0")
+}
+
+[connection signal="body_entered" from="TrapArea" to="." method="_on_trap_area_body_entered"]
