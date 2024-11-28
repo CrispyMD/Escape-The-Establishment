@@ -5,7 +5,7 @@ var activated: bool = false
 var whoDidIcatch: player = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$AnimationPlayer.play("lifetime")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,6 +30,7 @@ func _on_trap_area_body_entered(body: Node3D) -> void:
 	print("a")
 	if fatherIsThatNotYou(body):
 		print("b")
+		$AnimationPlayer.stop()
 		$AnimationPlayer.play("trap_activated")
 		whoDidIcatch = body
 		activated = true
@@ -40,3 +41,6 @@ func _on_trap_area_body_entered(body: Node3D) -> void:
 func setMyMaker(body: player):
 	if not body is player: return
 	whoPlacedMe = body
+
+func uwu():
+	print("a")

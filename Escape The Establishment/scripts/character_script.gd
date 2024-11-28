@@ -62,6 +62,9 @@ func _unhandled_input(event):
 			player.Ability.Runner:
 				print("d")
 				$BeastAbilityAnimationPlayer.play("runner_ability_timer")
+			player.Ability.Trapper:
+				print("L")
+				$BeastAbilityAnimationPlayer.play("trapper_ability_timer")
 			_:
 				print("e")
 	if Input.is_action_just_pressed("interact"):
@@ -112,7 +115,7 @@ func _physics_process(delta):
 		move_and_slide()
 	
 func getAnimationPlayer() -> AnimationPlayer:
-	return $BeastAbilityAnimationPlayer
+	return $AnimationPlayer
 	
 func a():
 	print("fs")
