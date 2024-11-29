@@ -32,7 +32,11 @@ enum Ability {
 func _ready():
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 	if is_beast != camera_mode_is_fps: switch_pov()
+	fps_camera.current = camera_mode_is_fps and is_multiplayer_authority()
+	tps_camera.current = (not camera_mode_is_fps) and is_multiplayer_authority()
+
 	if is_beast:
 		print("aaa")
 		$CharacterUI.display_ability(Ability.Runner)
@@ -79,6 +83,7 @@ func switch_pov():
 		self.rotation.y = head.rotation.y
 		fps_camera.rotation = Vector3.ZERO
 		head.rotation = Vector3.ZERO
+		
 	else:
 		switch_cameras(fps_camera, tps_camera)
 		fps_camera.rotation.x = spring.rotation.x
@@ -92,6 +97,9 @@ func switch_cameras(to_camera, from_camera):
 	camera_mode_is_fps = not camera_mode_is_fps
 
 func _physics_process(delta):
+	if ! is_multiplayer_authority():
+		return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	if Input.is_action_pressed("jump") and is_on_floor() and can_jump:
@@ -113,17 +121,9 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 		move_and_slide()
-	
+
 func getAnimationPlayer() -> AnimationPlayer:
 	return $AnimationPlayer
 	
 func a():
 	print("fs")
-
-#func start_ability_cooldown_count(a: Ability):
-	#match a:
-		#Ability.Runner:
-			#$BeastAbilityAnimationPlayer.play("runner_ability_cooldown")
-	
-	
-	
