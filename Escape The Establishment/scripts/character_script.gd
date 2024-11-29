@@ -2,7 +2,7 @@ class_name player
 extends CharacterBody3D
 
 const gravity = 14
-@export var SPEED = 5.0
+@onready var SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const SENSITIVITY = 0.1
 @onready var head = $Head
@@ -16,7 +16,7 @@ signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
 @export var chosen_ability: Ability 
-@export var ability_on_cooldown = false
+@onready var ability_on_cooldown = false
 @export var can_jump = true
 @export var can_move = true
 

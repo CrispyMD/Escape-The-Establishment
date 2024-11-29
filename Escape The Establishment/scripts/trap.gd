@@ -32,6 +32,7 @@ func _on_trap_area_body_entered(body: Node3D) -> void:
 		print("b")
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("trap_activated")
+		#body.get_node("CharacterUI").set_status_effect("trapped", 2.0)
 		whoDidIcatch = body
 		activated = true
 		body.getAnimationPlayer().play("trapped")

@@ -85,3 +85,25 @@ func display_progress_bar():
 
 func undisplay_progress_bar():
 	$ProgressBar.visible = false
+
+
+### STATUS EFFECTS OR SOME SHIT LIKE TRAPPED ###
+
+@export var effectDuration: float = 0.0
+func _process(delta: float) -> void:
+	$StatusEffect/VBox/DurationLabel.text = "%0.1f" % effectDuration
+
+	
+func set_status_effect(effect: String, duration: float):
+	$StatusEffect.visible = true
+	$StatusEffect/VBox/EffectLabel.text = effect.to_upper()
+	effectDuration = duration
+	tween_value(duration)
+	#$StatusEffect/VBox/DurationLabel.text = str(duration)
+	
+func tween_value(duration: float):
+	var tween = create_tween()
+	tween.tween_property(self, "effectDuration", 0, duration).set_trans(Tween.TRANS_LINEAR)
+	
+func undisplay_status_effect():
+	$StatusEffect.visible = false

@@ -99,6 +99,8 @@ placeholder_text = "Enter Address to Join Here"
 
 [node name="Character" parent="." instance=ExtResource("3_ysn0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.46063, 0)
+can_jump = true
+can_move = true
 
 [node name="Trap" parent="." instance=ExtResource("4_3u16c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.197278, 5)
