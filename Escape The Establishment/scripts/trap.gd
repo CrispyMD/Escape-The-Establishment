@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends RigidBody3D
 
 var whoPlacedMe: player = null
 var activated: bool = false
@@ -11,6 +11,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
 
 func fatherIsThatNotYou(body) -> bool:
 	#checks if the body is the same as who made trap
@@ -45,3 +46,8 @@ func setMyMaker(body: player):
 
 func uwu():
 	print("a")
+
+
+func _on_body_entered(body: Node) -> void:
+	if not sleeping:
+		sleeping = true

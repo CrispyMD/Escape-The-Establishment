@@ -19,6 +19,9 @@ func display_ability(ability: player.Ability):
 		player.Ability.Runner:
 			A_letter.text = "Q"
 			A_text.text = "Runner"
+		player.Ability.Trapper:
+			A_letter.text = "Q"
+			A_text.text = "Trapper"
 		_:
 			A_letter.text = "L"
 			A_text.text = "oOOOPS!!"

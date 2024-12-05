@@ -11,18 +11,20 @@ const SENSITIVITY = 0.1
 @onready var spring = $SpringArm3D
 
 @onready var camera_mode_is_fps = false
-@onready var is_beast = false
+@onready var is_beast = true
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
 @export var chosen_ability: Ability 
-@onready var ability_on_cooldown = false
+@export var ability_on_cooldown = false
 @export var can_jump = true
 @export var can_move = true
 
+@onready var trap_scene: PackedScene = preload("res://scenes/trap.tscn")
+
 enum Ability {
 	Runner,#DONE
-	Trapper,
+	Trapper,#WIP
 	Ninja,
 	Portaler, #this is the sombrar type portal
 	Pathmaker, #this is the portal like thing you wanted pookie
@@ -35,7 +37,7 @@ func _ready():
 	if is_beast != camera_mode_is_fps: switch_pov()
 	if is_beast:
 		print("aaa")
-		$CharacterUI.display_ability(Ability.Runner)
+		$CharacterUI.display_ability(chosen_ability)
 
 func handle_camera_movement(event):
 	if camera_mode_is_fps:
@@ -119,6 +121,17 @@ func getAnimationPlayer() -> AnimationPlayer:
 	
 func a():
 	print("fs")
+	
+func throw_trap():
+	var trap = trap_scene.instantiate()
+	trap.setMyMaker(self)
+	trap.global_transform.origin = head.global_transform.origin
+	get_tree().root.add_child(trap)
+	print(head.transform.basis.z)
+	print(head.transform.basis.z.normalized())
+	var direction = -head.transform.basis.z.normalized() + Vector3(0, 1.25, 0)
+	trap.apply_impulse(direction * 2)
+
 
 #func start_ability_cooldown_count(a: Ability):
 	#match a:
