@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bte1j3ynvf0re"]
+[gd_scene load_steps=31 format=3 uid="uid://bte1j3ynvf0re"]
 
 [ext_resource type="Script" path="res://scripts/character_script.gd" id="1_vew7i"]
 [ext_resource type="FontFile" uid="uid://bued63pcmgjnq" path="res://assets/Poppins-SemiBold.ttf" id="2_mr3gc"]
@@ -15,6 +15,13 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_bjyfv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pce3x"]
+bg_color = Color(0.0431373, 0, 0.129412, 0.431373)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g10d4"]
 bg_color = Color(0.0431373, 0, 0.129412, 0.862745)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -171,6 +178,26 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterUI")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"change_ability_bar_color_to_active"
+}, {
+"args": [0.15, 0.0],
+"method": &"tween_ability_bar"
+}, {
+"args": [22.0, 1.0],
+"method": &"tween_ability_bar"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_yu82u"]
 resource_name = "trapper_ability_timer"
@@ -199,6 +226,23 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"throw_trap"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterUI")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.2, 0.0],
+"method": &"tween_ability_bar"
+}, {
+"args": [21.8, 1.0],
+"method": &"tween_ability_bar"
 }]
 }
 
@@ -291,7 +335,6 @@ _data = {
 collision_layer = 3
 collision_mask = 5
 script = ExtResource("1_vew7i")
-chosen_ability = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_35hl4")
@@ -325,7 +368,6 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -340,6 +382,17 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pce3x")
+
+[node name="Bar" type="Panel" parent="CharacterUI/AbilityPanel"]
+self_modulate = Color(0.474122, 0.0131389, 0.414, 0.862745)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g10d4")
 
 [node name="GodotIsStupidIHateIt" type="Control" parent="CharacterUI/AbilityPanel"]
 anchors_preset = 0

@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://cat1tfhnntnv8"]
+
+[ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
+[ext_resource type="PackedScene" uid="uid://c46lq417eb8j6" path="res://scenes/door.tscn" id="3_x7cd2"]
+[ext_resource type="PackedScene" uid="uid://bte1j3ynvf0re" path="res://scenes/character.tscn" id="3_ysn0m"]
+[ext_resource type="PackedScene" uid="uid://c1yc6wbx5nqpi" path="res://scenes/trap.tscn" id="4_3u16c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6cubu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hbt8n"]
+sky_material = SubResource("ProceduralSkyMaterial_6cubu")
+
+[sub_resource type="Environment" id="Environment_x7p88"]
+background_mode = 2
+sky = SubResource("Sky_hbt8n")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_t0s5s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2l8t"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s1t4v"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="main_level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x7p88")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Computers" type="Node3D" parent="."]
+
+[node name="Computer" parent="Computers" instance=ExtResource("2_5x8c8")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.75627, 0.0933901, 6.9935)
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(48.4744, 0, 0, 0, 0.186781, 0, 0, 0, 55.5358, 0, 0, 0)
+layers = 4
+mesh = SubResource("BoxMesh_t0s5s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
+shape = SubResource("BoxShape3D_m2l8t")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.24832, 0, 0, 0, 2.9481, 0, 0, 0, 8.02386, -1.38496, 1.17124, -13.5898)
+layers = 4
+mesh = SubResource("BoxMesh_t0s5s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_s1t4v")
+
+[node name="Door" parent="." instance=ExtResource("3_x7cd2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.78894, 0, -5.91757)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -46.5
+offset_right = 44.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Host" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address to Join Here"
+
+[node name="Character" parent="." instance=ExtResource("3_ysn0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69698, 2.36536)
+
+[node name="Trap" parent="." instance=ExtResource("4_3u16c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61012, 3.99341, -5.98318)
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

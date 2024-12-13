@@ -2,7 +2,7 @@ class_name player
 extends CharacterBody3D
 
 const gravity = 14
-@onready var SPEED = 5.0
+@export var SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const SENSITIVITY = 0.1
 @onready var head = $Head
@@ -24,7 +24,7 @@ signal interact_pressed
 
 enum Ability {
 	Runner,#DONE
-	Trapper,#WIP
+	Trapper,#WIP - almost done?
 	Ninja,
 	Portaler, #this is the sombrar type portal
 	Pathmaker, #this is the portal like thing you wanted pookie
@@ -32,6 +32,7 @@ enum Ability {
 }
 
 func _ready():
+	SPEED = 5
 	self.rotation = Vector3.ZERO
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if is_beast != camera_mode_is_fps: switch_pov()
@@ -129,7 +130,7 @@ func throw_trap():
 	get_tree().root.add_child(trap)
 	print(head.transform.basis.z)
 	print(head.transform.basis.z.normalized())
-	var direction = -head.transform.basis.z.normalized() + Vector3(0, 1.25, 0)
+	var direction = -head.transform.basis.z.normalized() + Vector3(0, 0.5, 0)
 	trap.apply_impulse(direction * 2)
 
 

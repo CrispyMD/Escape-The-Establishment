@@ -12,6 +12,21 @@ func undisplay_all():
 @onready var A_text = $AbilityPanel/AbilityText
 var basefontsize = 28
 
+
+@onready var A_bar = $AbilityPanel/Bar
+@export var Ability_bar_size: float = 1.0
+
+func change_ability_bar_color_to_active():
+	var stylebox = A_bar.get_theme_stylebox("panel").duplicate()
+	stylebox.set("bg_color", Color(0.416, 0.041, 0.346, 0.863))
+	A_bar.add_theme_stylebox_override("panel", stylebox)
+
+func tween_ability_bar(duration: float, to_x_mult: float):
+	var newsize: Vector2 = $AbilityPanel.size
+	newsize = Vector2(newsize.x * to_x_mult, newsize.y)
+	var tween = create_tween()
+	tween.tween_property($AbilityPanel/Bar, "size", newsize, duration).set_trans(Tween.TRANS_LINEAR)
+
 func display_ability(ability: player.Ability):
 	print("fdnkbob")
 	A_text.get_label_settings().font_size = basefontsize
@@ -32,7 +47,7 @@ func fix_A_text_size():
 	while A_text.get_line_count() > 1:
 		A_text.get_label_settings().font_size = A_text.get_label_settings().font_size - 1
 	
-### INTERACT ###
+#region INTERACT
 
 @onready var I_letter = $InteractPanel/GodotIsStupidIHateIt/LetterBackgroundPanel/AbilityLetter
 @onready var I_text = $InteractPanel/AbilityText
@@ -58,6 +73,7 @@ func display_close_door():
 func undisplay_interact():
 	$InteractPanel.visible = false
 
+#endregion
 ### SKILLCHECK ###
 
 func display_skillcheck():
@@ -90,11 +106,14 @@ func undisplay_progress_bar():
 	$ProgressBar.visible = false
 
 
+
 ### STATUS EFFECTS OR SOME SHIT LIKE TRAPPED ###
 
 @export var effectDuration: float = 0.0
 func _process(delta: float) -> void:
 	$StatusEffect/VBox/DurationLabel.text = "%0.1f" % effectDuration
+	
+	#A_bar.size.x = $AbilityPanel.size.x * Ability_bar_size
 
 	
 func set_status_effect(effect: String, duration: float):
