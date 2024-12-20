@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cat1tfhnntnv8"]
+[gd_scene load_steps=12 format=3 uid="uid://cat1tfhnntnv8"]
 
 [ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
 [ext_resource type="PackedScene" uid="uid://c46lq417eb8j6" path="res://scenes/door.tscn" id="3_x7cd2"]
 [ext_resource type="PackedScene" uid="uid://bte1j3ynvf0re" path="res://scenes/character.tscn" id="3_ysn0m"]
 [ext_resource type="PackedScene" uid="uid://c1yc6wbx5nqpi" path="res://scenes/trap.tscn" id="4_3u16c"]
+[ext_resource type="PackedScene" uid="uid://t0ujnvi4s01a" path="res://assets/Ice chamber.glb" id="5_3v8w0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6cubu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -108,6 +109,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69698, 2.36536)
 
 [node name="Trap" parent="." instance=ExtResource("4_3u16c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61012, 3.99341, -5.98318)
+
+[node name="Ice chamber" parent="." instance=ExtResource("5_3v8w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94352, 0.0933905, -4.02364)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
