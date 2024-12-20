@@ -86,7 +86,6 @@ mesh = SubResource("CylinderMesh_q602c")
 skeleton = NodePath("../..")
 
 [node name="TrapArea" type="Area3D" parent="."]
-visible = false
 
 [node name="TrapCollision" type="CollisionShape3D" parent="TrapArea"]
 shape = SubResource("CylinderShape3D_tmb2i")

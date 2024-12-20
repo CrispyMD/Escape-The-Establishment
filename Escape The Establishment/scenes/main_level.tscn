@@ -1,5 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cat1tfhnntnv8"]
 
+[ext_resource type="Script" path="res://scripts/steam.gd" id="1_h85g2"]
 [ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
 [ext_resource type="PackedScene" uid="uid://c46lq417eb8j6" path="res://scenes/door.tscn" id="3_x7cd2"]
 [ext_resource type="PackedScene" uid="uid://bte1j3ynvf0re" path="res://scenes/character.tscn" id="3_ysn0m"]
@@ -27,6 +28,9 @@ glow_enabled = true
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="main_level" type="Node3D"]
+
+[node name="Steam" type="Node" parent="."]
+script = ExtResource("1_h85g2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x7p88")
