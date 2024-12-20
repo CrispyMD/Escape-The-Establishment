@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://du1xqstt4qcpo"]
+[gd_scene load_steps=10 format=3 uid="uid://du1xqstt4qcpo"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_kwk4f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jsuxr"]
 size = Vector3(2.55, 7.64, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tltle"]
-size = Vector3(3.52, 8.695, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6j4t"]
 
@@ -36,7 +33,7 @@ size = Vector3(0.27, 0.13, 0.04)
 script = ExtResource("1_kwk4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0632627, 0.748334, 0.487158)
+transform = Transform3D(1, 0, 0, 0, 0.983255, -0.182236, 0, 0.182236, 0.983255, 0, 0.29791, 0.184996)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.623811, 0.781575, 0, -0.781575, 0.623811, 0, 2.64788, 3.31075)
@@ -46,19 +43,11 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.893704)
 mesh = SubResource("BoxMesh_jsuxr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-shape = SubResource("BoxShape3D_tltle")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l42tx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_n5uul")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.443309, 0.465624, -0.203229)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.443118, 0.465624, -0.380075)
@@ -67,8 +56,10 @@ mesh = SubResource("BoxMesh_8m44n")
 [node name="Area3D" type="Area3D" parent="MeshInstance3D3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00104952, 0.0074985, -0.000723839)
 shape = SubResource("BoxShape3D_kylec")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.174702)
 
 [connection signal="input_event" from="MeshInstance3D3/Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="MeshInstance3D3/Area3D" to="." method="_on_area_3d_mouse_entered"]

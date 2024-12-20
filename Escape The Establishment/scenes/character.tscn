@@ -335,6 +335,7 @@ _data = {
 collision_layer = 3
 collision_mask = 5
 script = ExtResource("1_vew7i")
+chosen_ability = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_35hl4")
@@ -448,7 +449,6 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
@@ -509,7 +509,6 @@ offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="InteractPanel" type="PanelContainer" parent="CharacterUI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -561,7 +560,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SkillCheck" type="Control" parent="CharacterUI"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -609,7 +607,6 @@ pivot_offset = Vector2(3, 64)
 color = Color(1, 0, 0, 1)
 
 [node name="StatusEffect" type="PanelContainer" parent="CharacterUI"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
