@@ -3,10 +3,8 @@ extends Node3D
 
 var camera: Camera3D
 var spotlight: SpotLight3D
-
 var debug_line: ImmediateMesh = ImmediateMesh.new()
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
@@ -53,7 +51,6 @@ func _on_area_3d_mouse_entered() -> void:
 	pass
 	#$MeshInstance3D3.scale = Vector3(2, 1, 1)
 
-
 func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	print(event.as_text())
 	if event is InputEventMouseButton:
@@ -62,8 +59,11 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 			if event.is_pressed():
 				print("huh??")
 
-
 func _on_area_3d_mouse_exited() -> void:
 	#$MeshInstance3D3/SpotLight3D.visible = false
 	pass
 	#$MeshInstance3D3.scale = Vector3(1, 1, 1)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()

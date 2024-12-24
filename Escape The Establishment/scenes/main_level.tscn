@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cat1tfhnntnv8"]
+[gd_scene load_steps=13 format=3 uid="uid://cat1tfhnntnv8"]
 
 [ext_resource type="Script" path="res://scripts/steam.gd" id="1_h85g2"]
 [ext_resource type="PackedScene" uid="uid://bro1jq2gxhirb" path="res://scenes/computer.tscn" id="2_5x8c8"]
