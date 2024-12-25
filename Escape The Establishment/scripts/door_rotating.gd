@@ -1,5 +1,7 @@
 extends Node3D
 
+#region properties
+
 @onready var animation_player = $OpenDoorAnimationPlayer
 @onready var rotate_point = $RotatePoint
 
@@ -7,6 +9,8 @@ var nodes_in_area = []
 var player_using_door = null #keeps a player
 var should_handle_progress_bar = false
 var door_is_opened = false
+
+#endregion
 
 func _on_opening_door_area_body_entered(body):
 	if not body is player: return

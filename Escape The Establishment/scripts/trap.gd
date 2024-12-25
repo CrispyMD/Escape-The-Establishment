@@ -1,17 +1,15 @@
 extends RigidBody3D
 
+#region properties
+
 var whoPlacedMe: player = null
 var activated: bool = false
 var whoDidIcatch: player = null
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+
+#endregion
+
+func _ready():
 	$AnimationPlayer.play("lifetime")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 
 func fatherIsThatNotYou(body) -> bool:
 	#checks if the body is the same as who made trap
@@ -28,25 +26,19 @@ func fatherIsThatNotYou(body) -> bool:
 
 func _on_trap_area_body_entered(body: Node3D) -> void:
 	if not body is player: return
-	print("a")
 	if fatherIsThatNotYou(body):
-		print("b")
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("trap_activated")
-		#body.get_node("CharacterUI").set_status_effect("trapped", 2.0)
 		whoDidIcatch = body
 		activated = true
 		body.getAnimationPlayer().play("trapped")
-		print("c")
-		
-	
+
 func setMyMaker(body: player):
 	if not body is player: return
 	whoPlacedMe = body
 
 func uwu():
 	print("a")
-
 
 func _on_body_entered(body: Node) -> void:
 	if not sleeping:

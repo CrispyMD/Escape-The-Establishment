@@ -37,6 +37,9 @@ func display_ability(ability: player.Ability):
 		player.Ability.Trapper:
 			A_letter.text = "Q"
 			A_text.text = "Trapper"
+		player.Ability.Translocator:
+			A_letter.text = "Q"
+			A_text.text = "Translocator"
 		_:
 			A_letter.text = "L"
 			A_text.text = "oOOOPS!!"

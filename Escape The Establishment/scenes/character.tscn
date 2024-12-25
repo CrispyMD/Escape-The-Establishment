@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bte1j3ynvf0re"]
+[gd_scene load_steps=33 format=3 uid="uid://bte1j3ynvf0re"]
 
 [ext_resource type="Script" path="res://scripts/character_script.gd" id="1_vew7i"]
 [ext_resource type="FontFile" uid="uid://bued63pcmgjnq" path="res://assets/Poppins-SemiBold.ttf" id="2_mr3gc"]
@@ -138,6 +138,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:can_translocate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:can_throw_translocator")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kbgcf"]
 resource_name = "runner_ability_timer"
@@ -199,6 +223,84 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_tmlc4"]
+resource_name = "translocator_teleport_ability_timer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:can_throw_translocator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_translocate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:ability_on_cooldown")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_o2j8q"]
+resource_name = "translocator_throw_ability_timer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:ability_on_cooldown")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_translocate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:can_throw_translocator")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_yu82u"]
 resource_name = "trapper_ability_timer"
 length = 9.0
@@ -250,6 +352,8 @@ tracks/2/keys = {
 _data = {
 "RESET": SubResource("Animation_6d3a8"),
 "runner_ability_timer": SubResource("Animation_kbgcf"),
+"translocator_teleport_ability_timer": SubResource("Animation_tmlc4"),
+"translocator_throw_ability_timer": SubResource("Animation_o2j8q"),
 "trapper_ability_timer": SubResource("Animation_yu82u")
 }
 
@@ -335,7 +439,7 @@ _data = {
 collision_layer = 3
 collision_mask = 5
 script = ExtResource("1_vew7i")
-chosen_ability = 1
+chosen_ability = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_35hl4")
@@ -369,6 +473,7 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("2_njcvc")
 
 [node name="AbilityPanel" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -449,6 +554,7 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ProgressBar" type="Panel" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
@@ -509,6 +615,7 @@ offset_bottom = 39.0
 color = Color(0.0431373, 0, 0.129412, 0.509804)
 
 [node name="InteractPanel" type="PanelContainer" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -560,6 +667,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SkillCheck" type="Control" parent="CharacterUI"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -607,6 +715,7 @@ pivot_offset = Vector2(3, 64)
 color = Color(1, 0, 0, 1)
 
 [node name="StatusEffect" type="PanelContainer" parent="CharacterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

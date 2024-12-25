@@ -1,6 +1,8 @@
 class_name player
 extends CharacterBody3D
 
+#region properties
+
 const gravity = 14
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 5.5
@@ -15,18 +17,26 @@ const SENSITIVITY = 0.1
 signal interact_pressed
 @onready var progress_bar = $CharacterUI/ProgressBar
 
-@export var chosen_ability: Ability 
+@export var chosen_ability : Ability
 @export var ability_on_cooldown = false
 @export var can_jump = true
 @export var can_move = true
 
 @onready var trap_scene: PackedScene = preload("res://scenes/trap.tscn")
 
+#Translocator
+var can_translocate = false
+var can_throw_translocator = true
+@onready var translocator_scene = preload("res://scenes/translocator.tscn")
+var translocator_reference : RigidBody3D
+
+#endregion
+
 enum Ability {
 	Runner,#DONE
 	Trapper,#WIP - almost done?
 	Ninja,
-	Portaler, #this is the sombrar type portal
+	Translocator, #this is the sombrar type portal
 	Pathmaker, #this is the portal like thing you wanted pookie
 	Assassin
 }
@@ -56,20 +66,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		handle_camera_movement(event)
 	if Input.is_action_just_pressed("ability"):
-		print("a")
-		if not is_beast: return
-		print("b")
-		if ability_on_cooldown: return
-		print("c")
-		match chosen_ability:
-			player.Ability.Runner:
-				print("d")
-				$BeastAbilityAnimationPlayer.play("runner_ability_timer")
-			player.Ability.Trapper:
-				print("L")
-				$BeastAbilityAnimationPlayer.play("trapper_ability_timer")
-			_:
-				print("e")
+		handle_abilities()
 	if Input.is_action_just_pressed("interact"):
 		interact_pressed.emit(self)
 	if Input.is_action_just_pressed("switch_pov"):
@@ -88,6 +85,19 @@ func switch_pov():
 		head.rotation.y = self.rotation.y
 		self.rotation = Vector3.ZERO
 		spring.rotation = Vector3.ZERO
+
+func handle_abilities():
+	if ability_on_cooldown or not is_beast: return
+	
+	match chosen_ability:
+		player.Ability.Runner:
+			$BeastAbilityAnimationPlayer.play("runner_ability_timer")
+		player.Ability.Trapper:
+			$BeastAbilityAnimationPlayer.play("trapper_ability_timer")
+		player.Ability.Translocator:
+			handle_translocator_ability()
+		_:
+			pass
 
 func switch_cameras(to_camera, from_camera):
 	from_camera.current = false
@@ -119,25 +129,22 @@ func _physics_process(delta):
 	
 func getAnimationPlayer() -> AnimationPlayer:
 	return $AnimationPlayer
-	
-func a():
-	print("fs")
-	
+
 func throw_trap():
 	var trap = trap_scene.instantiate()
 	trap.setMyMaker(self)
 	trap.global_transform.origin = head.global_transform.origin
 	get_tree().root.add_child(trap)
-	print(head.transform.basis.z)
-	print(head.transform.basis.z.normalized())
 	var direction = -head.transform.basis.z.normalized() + Vector3(0, 0.5, 0)
 	trap.apply_impulse(direction * 2)
 
-
-#func start_ability_cooldown_count(a: Ability):
-	#match a:
-		#Ability.Runner:
-			#$BeastAbilityAnimationPlayer.play("runner_ability_cooldown")
-	
-	
-	
+func handle_translocator_ability():
+	if can_throw_translocator:
+		$BeastAbilityAnimationPlayer.play("translocator_throw_ability_timer")
+		translocator_reference = translocator_scene.instantiate()
+		get_tree().root.add_child(translocator_reference)
+		translocator_reference.global_position = head.global_position
+	else:
+		$BeastAbilityAnimationPlayer.play("translocator_teleport_ability_timer")
+		self.global_position = translocator_reference.global_position
+		translocator_reference.queue_free()
